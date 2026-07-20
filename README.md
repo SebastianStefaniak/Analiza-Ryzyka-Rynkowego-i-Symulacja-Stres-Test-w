@@ -1,7 +1,7 @@
 Markdown
 # Analiza Ryzyka Rynkowego i Symulacja Monte Carlo dla S&P 500
 
-Projekt dedykowany analizie historycznego ryzyka oraz symulacji przyszłych zachowań cenowych indeksu S&P 500 (`^GSPC`) przy użyciu języka Python. Narzędzie pobiera aktualne dane giełdowe i na ich podstawie szacuje wskaźniki ryzyka oraz generuje prognozy probabilistyczne.
+ Narzędzie pobiera aktualne dane giełdowe i na ich podstawie szacuje wskaźniki ryzyka oraz generuje prognozy probabilistyczne.
 
 ## 🚀 Funkcje projektu
 * **Automatyczne pobieranie danych**: Integracja z API `yfinance` w celu uzyskania historycznych notowań indeksu S&P 500.
