@@ -1,11 +1,11 @@
 Markdown
-# Analiza Ryzyka Rynkowego i Symulacja Monte Carlo dla S&P 500
+# Market Risk Analysis and Monte Carlo Simulation for the S&P 500
 
- Narzędzie pobiera aktualne dane giełdowe i na ich podstawie szacuje wskaźniki ryzyka oraz generuje prognozy probabilistyczne.
+This tool retrieves current stock market data to estimate risk metrics and generate probabilistic forecasts.
 
-## 🚀 Funkcje projektu
-* **Automatyczne pobieranie danych**: Integracja z API `yfinance` w celu uzyskania historycznych notowań indeksu S&P 500.
-* **Obliczanie Value at Risk (VaR)**: Wyznaczanie historycznego wskaźnika VaR na poziomie ufności 99%, określającego maksymalną oczekiwaną stratę jednodniową.
-* **Statystyki opisowe**: Kalkulacja średniego dziennego zwrotu oraz odchylenia standardowego (zmienności).
-* **Symulacja Monte Carlo**: Generowanie 5000 niezależnych scenariuszy rozwoju cen indeksu na 30 dni w przód z wykorzystaniem geometrycznego ruchu Browna (GBM).
-* **Wizualizacja danych**: Generowanie czytelnych wykresów rozkładu zwrotów oraz trajektorii symulowanych cen za pomocą bibliotek `matplotlib` i `seaborn`.
+## 🚀  Project Features
+* **Automated data retrieval: Integration with the yfinance API to obtain historical S&P 500 index quotes.
+* **Value at Risk (VaR) calculation: Determination of historical VaR at a 99% confidence level, representing the maximum expected one-day loss.
+* **Descriptive statistics: Calculation of average daily return and standard deviation (volatility).
+* **Monte Carlo simulation: Generation of 5,000 independent price scenarios for the index over a 30-day horizon using Geometric Brownian Motion (GBM).
+* **Data visualization: Generation of clear charts showing return distributions and simulated price trajectories using the matplotlib and seaborn libraries.
