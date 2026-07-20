@@ -6,42 +6,42 @@ import seaborn as sns
 
 dane = yf.download('^GSPC', start='2016-01-01', end='2026-01-01')
 
-#Zwrot dzienny
+#Daily returns
 dane['Zwrot_dzienny'] = dane['Close'].pct_change()
 dane = dane.dropna()
 
 #Value at Risk metodą historyczną na poziomie 99%
 var_99_hist = dane['Zwrot_dzienny'].quantile(0.01)
 
-#Statystyki
+#Statistics
 print("\n--- Statystyki Ryzyka ---")
 print(f"Średni dzienny zwrot wynosi: {dane['Zwrot_dzienny'].mean():.4%}")
 print(f"Odchylenie standardowe wynosi: {dane['Zwrot_dzienny'].std():.4%}")
 print(f"Value at Risk wynosi: {var_99_hist:.4%}")
 print(f"Inwestując w S&P 500, istnieje 1% procentowa szansa, że w ciągu jednego dnia stracimy więcej niż {var_99_hist:.2%} ")
 
-# Symulacja MONTE CARLO
+# Monte carlo simulation
 liczba_symulacji = 5000
 dni_w_przod = 30
 ostatnia_cena = dane['Close'].iloc[-1].item()
 
-#Parametry do modelu
+#Model parameters
 mu = dane['Zwrot_dzienny'].mean()
 sigma = dane['Zwrot_dzienny'].std()
 
-#Losowe szoki
+#Random shocks
 szoki = np.random.normal(loc=mu, scale=sigma, size=(dni_w_przod, liczba_symulacji))
 
-#Macierz ceny
+#MPrice matrix
 sciezki_cen = np.zeros_like(szoki)
 sciezki_cen[0] = ostatnia_cena
 
 for t in range(1, dni_w_przod):
     sciezki_cen[t] = sciezki_cen[t-1] * np.exp(szoki[t])
-#Wizualizacja
+#visualization
 fig, axes = plt.subplots(1,2, figsize=(16,6))
 
-#Wykres 1
+#Chart 1
 sns.histplot(dane['Zwrot_dzienny'], bins=100, ax=axes[0], color='gray', kde=True)
 axes[0].axvline(var_99_hist, color='red', linestyle='--', linewidth=2, label= 'Przykładowy scenariusz skrajny')
 axes[0].set_title('Rozkład dzienny zwrotów S&P 500')
@@ -50,7 +50,7 @@ axes[0].set_ylabel('Częstotliwość')
 axes[0].legend()
 
 
-#Wykres 2
+#Chart 2
 axes[1].plot(sciezki_cen, color='blue', alpha=0.05)
 axes[1].plot(sciezki_cen[:,0], color='red', linewidth=2, label='Przykładowy scenariusz')
 axes[1].axhline(ostatnia_cena, color='black', linestyle=':', label=f'Cena startowa ({ostatnia_cena:.2f})')
